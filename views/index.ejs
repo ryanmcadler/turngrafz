@@ -4,6 +4,7 @@
     <title>TurnGrafz</title>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="/javascripts/Chart.min.js"></script>
     <script type="text/javascript">
 
@@ -21,17 +22,25 @@
       };
 
       $(document).ready(function(){
-        var ctx = $("#chart").get(0).getContext("2d");
-        var myNewChart = new Chart(ctx).Line(data);
+          var ctx = $("#chart").get(0).getContext("2d");
+          var ww = $('#chart').attr('width', $('#graph-container').width() );
+          var hh = $('#chart').attr('height', 400);
+          new Chart(ctx).Line(data);
       });
-      
+
     </script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <h1>TurnGrafz</h1>
-    <div>
-      <canvas id="chart" width="1200" height="400"></canvas>
+    <div class="container">
+      <h1>TurnGrafz</h1>
+      <div class="row">
+        <div id="graph-container" class="col-md-12">
+          <canvas id="chart"></canvas>
+        </div>
+      </div>
     </div>
   </body>
 </html>
