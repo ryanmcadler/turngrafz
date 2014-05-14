@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+.desc {
+  margin-top: 28px;
+  margin-bottom: 28px;
+}

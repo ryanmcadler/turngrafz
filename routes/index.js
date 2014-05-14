@@ -9,11 +9,11 @@ router.get('/', function(req, res) {
 });
 
 router.post('/turngraf', function(req, res) {
+  var passno = req.body.user.passno;
+  var reqUrl = 'http://track.mtbachelor.com/tyt.asp?passmediacode=' + passno + '&season=13-14&currentday=null'
   var days = [];
   var vert = [];
-  request(
-    'http://track.mtbachelor.com/tyt.asp?passmediacode=MBA6438294&season=12-13&currentday=null',
-    function (error, response, body) {
+  request(reqUrl, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       $ = cheerio.load(body); // parse html...
       var tableRowCount = $('.customerContent').next().children('tr').length;
