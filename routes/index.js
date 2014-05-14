@@ -2,8 +2,13 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 var cheerio = require('cheerio');
+
 /* GET home page. */
 router.get('/', function(req, res) {
+  res.render('index');
+});
+
+router.post('/turngraf', function(req, res) {
   var days = [];
   var vert = [];
   request(
@@ -26,7 +31,7 @@ router.get('/', function(req, res) {
         }
       });
     }
-    res.render('index', { vert: JSON.stringify(vert), days: JSON.stringify(days) });
+    res.render('turngraf', { vert: JSON.stringify(vert), days: JSON.stringify(days) });
   });
 });
 
