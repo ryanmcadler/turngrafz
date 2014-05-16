@@ -11,6 +11,9 @@
       $(document).ready(function() {
 
         $('#chart').highcharts({
+            chart: {
+              type: 'spline'
+            },
             title: {
                 text: 'Days at Mt. Bachelor',
                 x: -20 //center
@@ -20,17 +23,25 @@
                 x: -20
             },
             xAxis: {
-                categories: <%- days %>
+                type: 'datetime',
+                dateTimeLabelFormats: { // don't display the dummy year
+                    month: '%b %e',
+                    year: '%b'
+                },
+                title: {
+                    text: 'Date'
+                }
             },
             yAxis: {
                 title: {
-                    text: 'Runs'
+                    text: ' Runs(s)'
                 },
                 plotLines: [{
                     value: 0,
                     width: 1,
                     color: '#808080'
-                }]
+                }],
+                min: 0
             },
             tooltip: {
                 valueSuffix: 'Run'
@@ -43,7 +54,7 @@
             },
             series: [{
                 name: '13/14 Season',
-                data: <%- vert %>
+                data: <%- turns %>
             }]
         });
 
