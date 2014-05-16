@@ -5,27 +5,48 @@
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="/javascripts/Chart.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
     <script type="text/javascript">
 
-      var data = {
-        labels : <%- days %>,
-        datasets : [
-          {
-            fillColor : "rgba(220,220,220,0.5)",
-            strokeColor : "rgba(220,220,220,1)",
-            pointColor : "rgba(220,220,220,1)",
-            pointStrokeColor : "#fff",
-            data : <%- vert %>
-          }
-        ]
-      };
+      $(document).ready(function() {
 
-      $(document).ready(function(){
-          var ctx = $("#chart").get(0).getContext("2d");
-          var ww = $('#chart').attr('width', $('#graph-container').width() );
-          var hh = $('#chart').attr('height', 400);
-          new Chart(ctx).Line(data);
+        $('#chart').highcharts({
+            title: {
+                text: 'Days at Mt. Bachelor',
+                x: -20 //center
+            },
+            subtitle: {
+                text: 'Source: MtBachelor.com',
+                x: -20
+            },
+            xAxis: {
+                categories: <%- days %>
+            },
+            yAxis: {
+                title: {
+                    text: 'Runs'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: 'Run'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: '13/14 Season',
+                data: <%- vert %>
+            }]
+        });
+
       });
 
     </script>
@@ -38,7 +59,7 @@
       <h1>TurnGrafz</h1>
       <div class="row">
         <div id="graph-container" class="col-md-12">
-          <canvas id="chart"></canvas>
+          <div id="chart"></div>
         </div>
       </div>
     </div>
